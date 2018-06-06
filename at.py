@@ -88,15 +88,17 @@ def vote():
     btnSignBlt = driver.find_element_by_css_selector(
         'div[ng-click="submitSign()"]')
     btnSignBlt.click()
-    time.sleep(3)
+    time.sleep(2)
+    return [memo, bHash]
 
 
 def sendBallot(emailAddr):
-    inpField = driver.find_element_by_xpath('//div[@class="input-wrapper ng-scope"]')
+    inpField = driver.find_element_by_css_selector(
+        'input[ng-model="inputs.email"]')
     inpField.send_keys(emailAddr)
     submitBlt = driver.find_element_by_xpath('//div[text()="SUBMIT BALLOT"]')
     submitBlt.click()
-    time.sleep(3)
+    time.sleep(2)
 
 
 def getEmail():
@@ -107,10 +109,9 @@ def getEmail():
         response.raise_for_status()
         sessionData = json.loads(response.text)
         print sessionData
-    	return sessionData
+        return sessionData
     except requests.HTTPError as e:
         print e.read()
-
 
 
 def getEmailList(sessionId):
@@ -125,8 +126,8 @@ def getEmailList(sessionId):
     return data
 
 
-def valEmailData(emailData):
-    emailList = getEmailList()
+def valEmailData(emailData, sessionId):
+    emailList = getEmailList(sessionId)
     print emailList
 
     mailObj = emailList.get('list')[0]
@@ -137,12 +138,32 @@ def valEmailData(emailData):
     print mailObj.get('mail_subject').encode('utf-8')
     print mailObj.get('mail_body').encode('utf-8')
     print emailData
+    '''
+    if mailFrom == 'voting2016app@gmail.com':
+        print 'sender is valid'
+    else:
+        print 'sender is INVALID!'
+    if mailSubject == 'Voter, your ballot has been successfully posted on public bulletin board':
+        print 'subject is valid'
+    else:
+        print 'subject is INVALID!'
+    if emailData[0] in mailBody and emailData[1] in mailBody:
+        print 'hash and MEMO are valid'
+    else:
+        print 'hash or/and MEMO are INVALID!'
+    '''
+
 
 credentials = getEmail()
 emailAddr = credentials.get('email_addr')
+print emailAddr
 sessionId = credentials.get('sid_token')
 getToCandidates()
 valLinks()
-vote()
+emailData = vote()
 sendBallot(emailAddr)
+time.sleep(30)
+valEmailData(emailData, sessionId)
+
+
 driver.close()
