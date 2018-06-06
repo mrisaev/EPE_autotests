@@ -5,6 +5,7 @@ import time
 import urllib2
 import ssl
 import random
+import json
 
 driver = webdriver.Firefox()
 driver.get("https://exonum.com/demo/voting/")
@@ -87,20 +88,61 @@ def vote():
     btnSignBlt = driver.find_element_by_css_selector(
         'div[ng-click="submitSign()"]')
     btnSignBlt.click()
-    time.sleep(2)
+    time.sleep(3)
 
 
-def bltSigned():
-    inpField = driver.find_element_by_css_selector(
-        'input[ng-model="inputs.email"]')
-    inpField.send_keys('TBD')
+def sendBallot(emailAddr):
+    inpField = driver.find_element_by_xpath('//div[@class="input-wrapper ng-scope"]')
+    inpField.send_keys(emailAddr)
     submitBlt = driver.find_element_by_xpath('//div[text()="SUBMIT BALLOT"]')
     submitBlt.click()
     time.sleep(3)
 
 
+def getEmail():
+    url = 'http://api.guerrillamail.com/ajax.php?'
+    payload = {'f': 'get_email_address', 'lang': 'en'}
+    response = requests.get(url, params=payload)
+    try:
+        response.raise_for_status()
+        sessionData = json.loads(response.text)
+        print sessionData
+    	return sessionData
+    except requests.HTTPError as e:
+        print e.read()
+
+
+
+def getEmailList(sessionId):
+    url = 'http://api.guerrillamail.com/ajax.php?'
+    payload = {'f': 'get_email_list', 'offset': '0', 'PHPSESSID': sessionId}
+    response = requests.get(url, params=payload)
+    try:
+        response.raise_for_status()
+    except requests.HTTPError as e:
+        print e.read()
+    data = json.loads(response.text)
+    return data
+
+
+def valEmailData(emailData):
+    emailList = getEmailList()
+    print emailList
+
+    mailObj = emailList.get('list')[0]
+    mailFrom = mailObj.get('mail_from').encode('utf-8')
+    mailSubject = mailObj.get('mail_subject').encode('utf-8')
+    mailBody = mailObj.get('mail_body').encode('utf-8')
+    print mailObj.get('mail_from').encode('utf-8')
+    print mailObj.get('mail_subject').encode('utf-8')
+    print mailObj.get('mail_body').encode('utf-8')
+    print emailData
+
+credentials = getEmail()
+emailAddr = credentials.get('email_addr')
+sessionId = credentials.get('sid_token')
 getToCandidates()
 valLinks()
 vote()
-bltSigned()
+sendBallot(emailAddr)
 driver.close()
