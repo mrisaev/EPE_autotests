@@ -1,0 +1,47 @@
+Summary,Issue key,Issue id,Issue Type,Status,Project key,Project name,Project type,Project lead,Project description,Project url,Priority,Resolution,Assignee,Reporter,Creator,Created,Updated,Last Viewed,Resolved,Due Date,Votes,Description,Environment,Watchers,Original Estimate,Remaining Estimate,Time Spent,Work Ratio,Σ Original Estimate,Σ Remaining Estimate,Σ Time Spent,Security Level,Custom field (Epic Color),Custom field (Epic Link),Custom field (Epic Name),Custom field (Epic Status),Custom field (Rank),Custom field (Story Points)
+"Возможно в хэдер нужно добавить   < meta name=""description"" content="""">",TEST-14,10013,Bug,To Do,TEST,test,software,test,,,Lowest,,,test,test,07/Jun/18 6:12 PM,07/Jun/18 6:12 PM,07/Jun/18 6:12 PM,,,0,Что бы поисковики проиндексировали и пользователи могли найти сайт через них.,,test,,,,,,,,,,,,,0|i0002v:,
+Можно ввести не валидный Email,TEST-13,10012,Bug,To Do,TEST,test,software,test,,,Medium,,,test,test,07/Jun/18 5:45 PM,07/Jun/18 5:45 PM,07/Jun/18 5:52 PM,,,0,Можно добавить валидацию адреса вида username@domain.zone. Если поле пустое значит юзер предпочел не использовать опцию,,test,,,,,,,,,,,,,0|i0002n:,
+Можно ввести пустой пин или 4< символов пин,TEST-12,10011,Bug,To Do,TEST,test,software,test,,,Medium,,,test,test,07/Jun/18 5:42 PM,07/Jun/18 5:42 PM,07/Jun/18 5:42 PM,,,0,"Я так понимаю пин должен быть именно 4 символа, можно добавить валидацию",,test,,,,,,,,,,,,,0|i0002f:,
+Линк кандидата ведет на facebook.com,TEST-11,10010,Bug,To Do,TEST,test,software,test,,,High,,,test,test,07/Jun/18 4:34 PM,07/Jun/18 4:34 PM,07/Jun/18 4:34 PM,,,0,Линк с информацией на кандидата Allar Jõks ведет на страницу на https://www.facebook.com/joksallar/about/?entry_point=page_nav_about_item&tab=page_info а должен на https://en.wikipedia.org/wiki/Allar_Jõks,,test,,,,,,,,,,,,,0|i00027:,
+Не понятен функционал BALLOT CONFIRMATION ON PUBLIC BULLETIN BOARD,TEST-10,10009,Bug,To Do,TEST,test,software,test,,,Medium,,,test,test,07/Jun/18 4:31 PM,07/Jun/18 4:31 PM,07/Jun/18 5:49 PM,,,0,"https://exonum.com/demo/voting/#/elections/submitted
+
+Не понятно как этим пользоваться если нет, собственно, кнопки подтверждения Email.",,test,,,,,,,,,,,,,0|i0001z:,
+Не приходит письмо с подтверждением выбора,TEST-9,10008,Bug,To Do,TEST,test,software,test,,,Highest,,,test,test,07/Jun/18 4:27 PM,07/Jun/18 4:27 PM,07/Jun/18 4:27 PM,,,0,"Функционал на странице https://exonum.com/demo/voting/#/elections/signed по отправке письма с информацией не работает. 
+
+Ставлю высокий приоритет, потому что баг аффектит автотест",,test,,,,,,,,,,,,,0|i0001r:,
+Кнопка contact information не работает,TEST-8,10007,Bug,To Do,TEST,test,software,test,,,Medium,,,test,test,07/Jun/18 4:21 PM,07/Jun/18 4:21 PM,07/Jun/18 4:21 PM,,,0,https://exonum.com/demo/voting/#/elections/submitted,,test,,,,,,,,,,,,,0|i0001j:,
+Формат времени,TEST-7,10006,Bug,To Do,TEST,test,software,test,,,Medium,,,test,test,07/Jun/18 4:17 PM,07/Jun/18 4:17 PM,07/Jun/18 4:17 PM,,,0,"На странице https://exonum.com/demo/voting/#/elections указан такой формат времени Mon, 29 Aug 2016 23:00:00 +0300 что выглядит выодом фунцкии вроде dateTime, но не является дружелюбным форматом для юзеров. Предлагаю заменить на 
+Monday 29 August 2016 23:00 GMT+3 или UTC+3 
+",,test,,,,,,,,,,,,,0|i0001b:,
+"Контрольный(неотображаемый) символ  (U+0003, end of text) в тексте",TEST-6,10005,Bug,To Do,TEST,test,software,test,,,High,,,test,test,07/Jun/18 4:07 PM,07/Jun/18 4:07 PM,07/Jun/18 4:07 PM,,,0,"Этот символ встречается в тексте в нескольких местах
+1 окно ввода пин кода:
+Input your secret PIN2 to authorize a digital signature request with your private key on crypto SIM-card, thus signing your anonymous ballot.
+
+2 https://exonum.com/demo/voting/#/elections/signed
+Optionally, you may enter an e-mail to receive at most 2 notifications about:
+
+3 https://exonum.com/demo/voting/#/elections/decrypted
+On this page all encryption details are revealed, so that a voter or an auditor can verify that the ballot has been encrypted correctly. It can be done automatically via trusted 3rd party help or manually for each operation.
+
+Tallying authorities aggregate public key	
+Candidate option selected and encryption randomness	
+Encrypted ballot	
+Ballot SHA-256 hash	
+3-word memo by BIP 0039 Mnemonic code algorithm",,test,,,,,,,,,,,,,0|i00013:,
+При нажатии на Discard выбрасывает в начало,TEST-5,10004,Bug,To Do,TEST,test,software,test,,,Medium,,,test,test,07/Jun/18 4:01 PM,07/Jun/18 4:01 PM,07/Jun/18 4:01 PM,,,0,"При подтверждении выбора на странице https://exonum.com/demo/voting/#/elections/ballot если нажать на Discard прилажение переходить на начальную страницу. Но учитывая, что избиратель не сделал выбор, было бы логичней и удобней для пользователей переводить их на страницу выбора кандидатов. ",,test,,,,,,,,,,,,,0|i0000v:,
+Устаревший линк http://www.vvk.ee,TEST-4,10003,Bug,To Do,TEST,test,software,test,,,Medium,,,test,test,07/Jun/18 3:55 PM,07/Jun/18 3:57 PM,07/Jun/18 3:57 PM,,,0,"В pop out окне подтверждения выбора кандидата устаревший линк.
+На сайте vvk.ee показывается сообщение что информация о выборах доступна на www.valimised.ee. Имеет смысл изменить линк.
+
+It’s recommended that you take a look at corresponding election legislation details first. http://www.vvk.ee/?lang=en",,test,,,,,,,,,,,,,0|i0000n:,
+На некоторых страницах нет кнопки назад,TEST-3,10002,Bug,To Do,TEST,test,software,test,,,Medium,,,test,test,07/Jun/18 3:53 PM,07/Jun/18 3:53 PM,07/Jun/18 3:53 PM,,,0,"На страницах https://exonum.com/demo/voting/#/elections/submitted и voting/#/elections/signed нет кнопки назад, да на них есть похожие по функционалу discard ballot и return, но, тем не менее, можно добавть и кнопку назад которая возвращает к списку кандидатов. 
+
+Если это as designed переведите на меня с комментарием, пожалуйста, я закрою.",,test,,,,,,,,,,,,,0|i0000f:,
+Кнопка Help не работает,TEST-2,10001,Bug,To Do,TEST,test,software,test,,,Medium,,,test,test,07/Jun/18 3:47 PM,07/Jun/18 3:47 PM,07/Jun/18 3:47 PM,,,0,"При нажатии не происходит ничего.
+
+<div class=""toolbar ng-scope"">
+    <div class=""toolbar-return-button pull-left"" ng-click=""back()"" ng-show=""backState"" style=""display: none;""></div>
+    <div class=""toolbar-help-button pull-right"" ng-show=""backState"" style=""display: none;"">HELP</div>
+    <div class=""toolbar-help-button pull-right"" ng-show=""!backState"" style="""">HELP</div>
+    <div class=""toolbar-title""><span class=""ng-binding"">Ballot has been signed</span></div>
+</div>",,test,,,,,,,,,,,,,0|i00007:,
+Линк */voting/#/elections/candidates ссылается на несколько страниц,TEST-1,10000,Bug,To Do,TEST,test,software,test,,,High,,,test,test,07/Jun/18 3:16 PM,07/Jun/18 3:16 PM,07/Jun/18 6:50 PM,,,0,"После выбора типа выборов и перехода со страницы https://exonum.com/demo/voting/#/elections на https://exonum.com/demo/voting/#/elections/candidates после обновления страницы будут отображены кандидаты из выборов другой страны. Тоже самое произойдет если пройти по линку на прямую, всегда будешь попадать на страницу выбора кандидата. В данном случае если нужно страница выборов Эстонии, но попадаешь на США. ",,test,,,,,,,,,,,,,0|hzzzzz:,

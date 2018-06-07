@@ -11,6 +11,7 @@ driver = webdriver.Firefox()
 driver.get("https://exonum.com/demo/voting/")
 
 
+'''
 def getWikiText(link):
     ctx = ssl.create_default_context()
     ctx.check_hostname = False
@@ -21,9 +22,11 @@ def getWikiText(link):
     root = tree.getroot()
     result = root.find('r').text
     print result.encode('utf-8')
+'''
 
 
 def getToCandidates():
+    driver.get("https://exonum.com/demo/voting/")
     btn1 = driver.find_element_by_css_selector(
         "div[class='button button-red']")
     btn1.click()
@@ -35,24 +38,25 @@ def getToCandidates():
     btn2 = driver.find_element_by_xpath('//div[text()="VOTE IN ELECTION"]')
     btn2.click()
     time.sleep(2)
+    nameElemList = driver.find_elements_by_xpath('//td[@class="ng-binding"]')
+    return nameElemList
+    time.sleep(2)
 
 
-def valLinks():
-    # candidates = driver.find_elements_by_css_selector("tr[ng-repeat=\"candidate in currentElection.candidates\"]")
-    nameElem = driver.find_elements_by_xpath('//td[@class="ng-binding"]')
-    for i in nameElem:
-        i.click()
-        time.sleep(1)
-        linkElem = driver.find_element_by_xpath(
-            '//a[@class="list-option-link"]')
-        link = linkElem.get_attribute('href')
-        name = i.text.encode('utf-8')
-        print linkElem.get_attribute('href')
-        print i.text.encode('utf-8')
-        if link[0:24] == 'https://en.wikipedia.org' and name.replace(' ', '_') in link:
-            print 'Passed'
-        else:
-            print 'Failed'
+def valLinks(nameIndex):
+    nameElemList = driver.find_elements_by_xpath('//td[@class="ng-binding"]')
+    nameElemList[nameIndex].click()
+    time.sleep(1)
+    linkElem = driver.find_element_by_xpath(
+        '//a[@class="list-option-link"]')
+    link = linkElem.get_attribute('href')
+    name = nameElemList[nameIndex].text.encode('utf-8')
+    print linkElem.get_attribute('href')
+    print nameElemList[nameIndex].text.encode('utf-8')
+    if link[0:24] == 'https://en.wikipedia.org' and name.replace(' ', '_') in link:
+        print 'Passed'
+    else:
+        print 'Failed'
     time.sleep(2)
 
 
@@ -158,12 +162,14 @@ credentials = getEmail()
 emailAddr = credentials.get('email_addr')
 print emailAddr
 sessionId = credentials.get('sid_token')
-getToCandidates()
-valLinks()
-emailData = vote()
-sendBallot(emailAddr)
-time.sleep(30)
-valEmailData(emailData, sessionId)
+nameElemList = getToCandidates()
+for i in range(len(nameElemList)):
+    getToCandidates()
+    valLinks(i)
+    emailData = vote()
+    sendBallot(emailAddr)
+    time.sleep(5)
+    valEmailData(emailData, sessionId)
 
 
 driver.close()
